@@ -3,20 +3,6 @@ function inWindow(sprite){
 	return CollisionDetection(sprite,{mWidth:cWidth,mHeight:cHeight,mDx:0,mDy:0})
 }
 
-function toSprite(s1,s2){ //두 스프라이트 s1에서 s2 사이의 방향벡터 return
-	return normalize({
-		x:(s2.mDx+s2.mWidth/2) -(s1.mDx+s1.mWidth/2),
-		y:(s2.mDy+s2.mHeight/2)-(s1.mDy+s1.mHeight/2)
-	});
-}
-//방향성 벡터를 만듦
-function normalize(v){
-	const s=Math.sqrt(Math.pow(v.x,2)+Math.pow(v.y,2));
-	return 	{
-		x:v.x/s,
-		y:v.y/s
-	}
-}
 //AABB 충돌
 function CollisionDetection(s1,s2){
 	if(s1.mCount==0 || s2.mCount==0){
@@ -34,7 +20,7 @@ function CollisionDetection(s1,s2){
 	if((x2>=s1.mDx && x2<=x1 || s2.mDx>=s1.mDx && s2.mDx<=x1) && (y2>=s1.mDy && y2<=y1 || s2.mDy>=s1.mDy && s2.mDy<=y1)){
 		return true;
 	}
-}
+}	
 
 //update 단에서 이벤트로인한 처리를 일괄적으로하는데 이게 그 등록되는 함수
 function requestEvent(keyCode,callback,o){ //o==true 라면 등록된 함수가 keyUp이벤트 발생전까지 함수가 유지됩니다.
@@ -48,9 +34,9 @@ function requestEvent(keyCode,callback,o){ //o==true 라면 등록된 함수가 
 }
 
 //object를 입력하면(bullet배열 필수) 총알을 쏴줌
-function shootBullet(target,prototype,vX,vY,origin){ //origin : 50% 100%
+function shootBullet(target,prototype,vX,vY,origin,aX,aY){ //origin : 50% 100%
 	var t=target.bullets;
-	if(t.length>(target.maxBulletsCount || MAX_BULLETS_INDEX)){
+	if(t.length>(target.maxBulletsIndex || MAX_BULLETS_INDEX)){
 		t.shift();
 	}
 	t=t[t.push(new Sprite(prototype))-1];
@@ -65,6 +51,10 @@ function shootBullet(target,prototype,vX,vY,origin){ //origin : 50% 100%
 		if(!isNaN(vY)){
 			t.mVy=vY;
 		}
+	}
+	if(!isNaN(aX) && !isNaN(aY)){
+		t.mAx=aX;
+		t.mAy=aY;
 	}
 }
 
@@ -101,4 +91,46 @@ function createExplosion(prototype,sprite){
 	const target=explosions[explosions.push(new Sprite(prototype))-1];
 	target.mDx=sprite.mDx+(sprite.mWidth-target.mWidth)/2;
 	target.mDy=sprite.mDy+(sprite.mHeight-target.mWidth)/2;
+}
+
+
+
+//패턴제작에 관련된 함수들
+function toSprite(s1,s2){ //두 스프라이트 s1에서 s2 사이의 방향벡터 return
+	return normalize({
+		x:(s2.mDx+s2.mWidth/2) -(s1.mDx+s1.mWidth/2),
+		y:(s2.mDy+s2.mHeight/2)-(s1.mDy+s1.mHeight/2)
+	});
+}
+//방향성 벡터를 만듦
+function normalize(v){
+	const s=Math.sqrt(Math.pow(v.x,2)+Math.pow(v.y,2));
+	return 	{
+		x:v.x/s,
+		y:v.y/s
+	}
+}
+//라디안 변환
+function radian(degree){
+	return Math.PI/180*degree;
+}
+function degree(radian){
+	return 180/Math.PI*radian;
+}
+
+//방향벡터 얻기
+function getDirection(degree){
+	return{
+		x:Math.cos(radian(degree)),
+		y:-Math.sin(radian(degree))
+	}
+}
+
+setTimeout(load_resources,500);
+function load_resources(){
+	if(Resources_List.length>=2){
+		unlock_start_btn();
+		return;
+	}
+	setTimeout(load_resources,500);
 }

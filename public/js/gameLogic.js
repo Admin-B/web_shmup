@@ -134,9 +134,13 @@ function GAME(){
 					}	
 				}
 			}
+			
 			var aCollide=false;
 			for(var k=0; k<sp_player.geometry.length; k++){
-				if(aCollide!==true && anermy.sprite.geometry){
+				if(aCollide===true){
+					break;
+				}
+				if(anermy.sprite.geometry){
 					for(var l=0; l<anermy.sprite.geometry.length; l++){
 						if(_GeometryCollisionDetection(sp_player,sp_player.geometry[k],anermy.sprite,anermy.sprite.geometry[l])){
 							player.getDamage();
@@ -153,11 +157,28 @@ function GAME(){
 
 				for(var j=0; j<anermy.bullets.length; j++){
 					var aBullet=anermy.bullets[j];
-					if(GeometryCollisionDetection(sp_player,sp_player.geometry[k],aBullet)){
-						//주인공이 적 총알에 맞았을 시
-						aBullet.mCount=0;
-						player.getDamage();
-						break;
+					if(aBullet.geometry){
+						var temp;
+						for(var l=0; l<aBullet.geometry.length; l++){
+							if(_GeometryCollisionDetection(sp_player,sp_player.geometry[k],aBullet,aBullet.geometry[l])){
+								//주인공이 적 총알에 맞았을 시
+								aBullet.mCount=0;
+								player.getDamage();
+								aCollide=true;
+								break;
+							}
+						}
+						if(aCollide===true){
+							break;
+						}
+					}else{
+						if(GeometryCollisionDetection(sp_player,sp_player.geometry[k],aBullet)){
+							//주인공이 적 총알에 맞았을 시
+							aBullet.mCount=0;
+							player.getDamage();
+							aCollide=true;
+							break;
+						}						
 					}
 				}
 			}

@@ -23,8 +23,30 @@ const prototype={
 			width:8,
 			height:8,
 			sX:1,
-			sY:1,
+			sY:1
 		},
+		medium_red:{
+			src:"./resources/img/CustomShots-2.png",
+			width:16,
+			height:15,
+			sX:0,
+			sY:203,
+		},
+		big_red:{
+			src:"./resources/img/CustomShots-2.png",
+			width:62,
+			height:62,
+			sX:1,
+			sY:329,
+			geometry:[
+			{
+				mWidth:30,
+				mHeight:30,
+				mDx:18,
+				mDy:18
+			}
+			]
+		}
 	},
 	ship:{
 		saucer_skyblue:{
@@ -164,14 +186,14 @@ const prototype={
 				this.mCount=0;
 			}
 		}
+	},
+	background:{
+		map1:{
+			src:"./resources/img/background1.png",
+			width:c.width,
+			dY:-2100,
+			vY:20
+		}
 	}
 };
 
-setTimeout(load_resources,500);
-function load_resources(){
-	if(Resources_List.length>=2){
-		unlock_start_btn();
-		return;
-	}
-	setTimeout(load_resources,500);
-}

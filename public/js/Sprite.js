@@ -84,6 +84,10 @@ class Sprite{
 		this.mVx=imageInfo.vX || 0;
 		this.mVy=imageInfo.vY || 0;
 
+		//가속도
+		this.mAx=imageInfo.aX || 0;
+		this.mAy=imageInfo.aY || 0;
+
 		this.mLastFrame=imageInfo.last_frame || undefined;
 		
 		this.mTimer=null;
@@ -112,6 +116,9 @@ class Sprite{
 			this.mOldUpdateTime=newTime;	
 			this.mDx+=this.mVx/1000*this.mUpdateTime;
 			this.mDy+=this.mVy/1000*this.mUpdateTime;
+
+			this.mVx+=this.mAx/1000*this.mUpdateTime;
+			this.mVy+=this.mAy/1000*this.mUpdateTime;
 		}
 
 		if(this.mCount!=0 && this.mTimer){

@@ -1,8 +1,9 @@
-const MAX_BULLETS_INDEX=50; // 하나의 오브젝트가 가질 수있는 총알의 최대 치.
+const MAX_BULLETS_INDEX=100; // 하나의 오브젝트가 가질 수있는 총알의 최대 치. 기본값.
+
 
 /*********************************player*****************************/
 var player={
-	hp:10,
+	hp:3,
 	score:0,
 	movingSpeed:7,
 	noDamage:false,//무적상태
@@ -114,7 +115,7 @@ var anermys=new Array();
 	anermys.push({
 		hp:10,
 		bullets:[],
-		maxBulletsCount:100,
+		maxBulletsIndex:100,
 		sprite:new Sprite(prototype.ship.saucer_red),
 		nohp:function(){
 			createExplosion(prototype.explosion.medium,this.sprite);
@@ -143,7 +144,7 @@ var anermys=new Array();
 	anermys.push({
 		hp:20,
 		bullets:[],
-		maxBulletsCount:500,
+		maxBulletsIndex:500,
 		sprite:new Sprite(prototype.ship.saucer_darkblue),
 		nohp:function(){
 			createExplosion(prototype.explosion.medium,this.sprite);
@@ -178,7 +179,7 @@ var anermys=new Array();
 	anermys.push({
 		hp:20,
 		bullets:[],
-		maxBulletsCount:500,
+		maxBulletsIndex:500,
 		sprite:new Sprite(prototype.ship.saucer_darkblue),
 		nohp:function(){
 			createExplosion(prototype.explosion.medium,this.sprite);
@@ -213,7 +214,7 @@ var anermys=new Array();
 	anermys.push({
 		hp:20,
 		bullets:[],
-		maxBulletsCount:500,
+		maxBulletsIndex:500,
 		sprite:new Sprite(prototype.ship.saucer_darkblue),
 		nohp:function(){
 			createExplosion(prototype.explosion.medium,this.sprite);
@@ -251,7 +252,7 @@ var anermys=new Array();
 	anermys.push({
 		hp:20,
 		bullets:[],
-		maxBulletsCount:500,
+		maxBulletsIndex:500,
 		sprite:new Sprite(prototype.ship.saucer_darkblue),
 		nohp:function(){
 			createExplosion(prototype.explosion.medium,this.sprite);
@@ -291,7 +292,7 @@ var anermys=new Array();
 	anermys.push({
 		hp:20,
 		bullets:[],
-		maxBulletsCount:10000,
+		maxBulletsIndex:10000,
 		sprite:new Sprite(prototype.ship.saucer_red),
 		nohp:function(){
 			createExplosion(prototype.explosion.medium,this.sprite);
@@ -349,11 +350,135 @@ var anermys=new Array();
 })();
 
 
+/***********************************************5WAVE********************************************************/
+//anermy8
+(function(){
+	anermys.push({
+		hp:20,
+		bullets:[],
+		sprite:new Sprite(prototype.ship.saucer_skyblue),
+		maxBulletsIndex:1000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[8];
+	anermy.sprite.mDy=-850;
+	anermy.sprite.mVy=20;
 
+	anermy.sprite.mTimer={
+		delay:1000,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				anermy.sprite.mVx=100;
+				anermy.sprite.mVy=100;
+				for(var i=0; i<360; i+=10){
+					var dir=getDirection(i);
+					shootBullet(anermy,prototype.bullet.small_red,0,0,{y:50},dir.x*100,dir.y*100);
+				}				
+			}
+		}
+	};	
+})();
+/***********************************************6WAVE********************************************************/
+//anermy9
+(function(){
+	anermys.push({
+		hp:20,
+		bullets:[],
+		sprite:new Sprite(prototype.ship.saucer_skyblue),
+		maxBulletsIndex:10000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[9];
+	anermy.sprite.mDx=cWidth-anermy.sprite.mWidth;
+	anermy.sprite.mDy=-950;
+	anermy.sprite.mVy=20;
+
+	anermy.sprite.mTimer={
+		delay:1000,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				anermy.sprite.mVx=-100;
+				anermy.sprite.mVy=100;
+				for(var i=0; i<360; i+=10){
+					var dir=getDirection(i);
+					shootBullet(anermy,prototype.bullet.small_red,0,0,{y:50},dir.x*100,dir.y*100);
+				}				
+			}
+		}
+	};	
+})();
+
+
+
+/***********************************************7WAVE********************************************************/
+//anermy10
+(function(){
+	anermys.push({
+		hp:30,
+		bullets:[],
+		sprite:new Sprite(prototype.ship.saucer_skyblue),
+		maxBulletsIndex:10000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[10];
+	anermy.sprite.mDx=0;
+	anermy.sprite.mDy=-1050;
+	anermy.sprite.mVy=20;
+
+	anermy.sprite.mTimer={
+		delay:1000,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				anermy.sprite.mVx=100;
+				anermy.sprite.mVy=100;
+				for(var i=0; i<360; i+=10){
+					var dir=getDirection(i);
+					shootBullet(anermy,prototype.bullet.small_red,0,0,{y:50},dir.x*100,dir.y*100);
+				}				
+			}
+		}
+	};	
+})();
+//anermy11
+(function(){
+	anermys.push({
+		hp:30,
+		bullets:[],
+		sprite:new Sprite(prototype.ship.saucer_skyblue),
+		maxBulletsIndex:10000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[11];
+	anermy.sprite.mDx=cWidth-anermy.sprite.mWidth;
+	anermy.sprite.mDy=-1050;
+	anermy.sprite.mVy=20;
+
+	anermy.sprite.mTimer={
+		delay:1000,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				anermy.sprite.mVx=-100;
+				anermy.sprite.mVy=100;
+				for(var i=0; i<360; i+=10){
+					var dir=getDirection(i);
+					shootBullet(anermy,prototype.bullet.small_red,0,0,{y:50},dir.x*100,dir.y*100);
+				}				
+			}
+		}
+	};	
+})();
 
 //각 웨이브마다 몇번쨰 anermy 배열까지가 하나의 웨이브인지 정의
 //gamelogic에서는 한 웨이브의 적이 없어지면, 다음웨이브의 적들의 y좌표를 바로 앞까지 떙겨 온다.
-const WAVE=[2,4,6,7];
+const WAVE=[2,4,6,7,8,9,10];
 var nowWaveIndex=0;
 
 
@@ -363,8 +488,4 @@ var nowWaveIndex=0;
 /***********************explosion******************************/
 var explosions=[];
 
-var background=new Sprite("./resources/img/background1.png",{
-	width:c.width,
-	dY:-2100,
-	vY:20,
-});
+var background=new Sprite(prototype.background.map1);
