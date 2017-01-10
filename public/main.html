@@ -35,7 +35,7 @@
 			window.addEventListener("load",function(){
 				start_btn.addEventListener("click",function(){
 					cover_wrap.style.display="none";
-					window.requestAnimationFrame(GAME_LOOP);
+					GAME();
 				});
 			});
 			//player 정보를 기반으로 dom 객체 업데이트

@@ -122,8 +122,8 @@ var anermys=new Array();
 	});
 	const anermy=anermys[2];
 	anermy.sprite.mDx=cWidth/2-anermy.sprite.mWidth/2;
-	anermy.sprite.mDy=-250;
-	anermy.sprite.mVy=50;
+	anermy.sprite.mDy=-200;
+	anermy.sprite.mVy=100;
 	anermy.sprite.mTimer={
 		delay:1000,
 		callback:function(){
@@ -151,7 +151,7 @@ var anermys=new Array();
 	});
 	const anermy=anermys[3];
 	anermy.sprite.mDx=cWidth/2;
-	anermy.sprite.mDy=-350;
+	anermy.sprite.mDy=-250;
 	anermy.sprite.mVy=20;
 	anermy.sprite.mTimer={
 		delay:700,
@@ -186,7 +186,7 @@ var anermys=new Array();
 	});
 	const anermy=anermys[4];
 	anermy.sprite.mDx=cWidth/2-anermy.sprite.mWidth;
-	anermy.sprite.mDy=-350;
+	anermy.sprite.mDy=-250;
 	anermy.sprite.mVy=20;
 	anermy.sprite.mTimer={
 		delay:700,
@@ -221,7 +221,7 @@ var anermys=new Array();
 	});
 	const anermy=anermys[5];
 	anermy.sprite.mDx=10;
-	anermy.sprite.mDy=-550;
+	anermy.sprite.mDy=-450;
 	anermy.sprite.mVy=20;
 	anermy.sprite.mTimer={
 		delay:500,
@@ -259,7 +259,7 @@ var anermys=new Array();
 	});
 	const anermy=anermys[6];
 	anermy.sprite.mDx=cWidth-10-anermy.sprite.mWidth;
-	anermy.sprite.mDy=-550;
+	anermy.sprite.mDy=-450;
 	anermy.sprite.mVy=20;
 	anermy.sprite.mTimer={
 		delay:500,
@@ -291,50 +291,57 @@ var anermys=new Array();
 	anermys.push({
 		hp:20,
 		bullets:[],
-		maxBulletsCount:1000,
-		sprite:new Sprite(prototype.ship.saucer_darkblue),
+		maxBulletsCount:10000,
+		sprite:new Sprite(prototype.ship.saucer_red),
 		nohp:function(){
 			createExplosion(prototype.explosion.medium,this.sprite);
 		}
 	});
 	const anermy=anermys[7];
 	anermy.sprite.mDx=cWidth/2-anermy.sprite.mWidth/2;
-	anermy.sprite.mDy=-650;
+	anermy.sprite.mDy=-550;
 	anermy.sprite.mVy=20;
 	anermy.getDamage=function(){
-		this.bulletCount=50;
-		this.bulletSpeed=1000;
 		var sIndex=Math.cos(anermy.sprite.mDx);
 		var index =sIndex;
-		for(var i=0; i<this.bulletCount; i++){
+		for(var i=0; i<50; i++){
 			if(index>=Math.Pi*2){
 				break
 			}
-			shootBullet(this,prototype.bullet.small_red,Math.cos(index)*this.bulletSpeed,Math.sin(index)*this.bulletSpeed,{y:50});
+			shootBullet(this,prototype.bullet.small_red,Math.cos(index)*1000,Math.sin(index)*1000,{y:50});
 			index+=0.5;
 		}
+		setTimeout(function(){
+			for(var i=0; i<50; i++){
+				if(index>=Math.Pi*2){
+					break
+				}
+				shootBullet(anermy,prototype.bullet.small_red,Math.cos(index)*1000,Math.sin(index)*1000,{y:50});
+				index+=0.5;
+			}
+		},500);
 	};
-	anermy.bulletCount=5;
 	anermy.sprite.mTimer={
 		delay:1000,
 		callback:function(){
 			const sprite=anermy.sprite;
 			if(inWindow(sprite)){
+				if(sprite.mDy>=0){
+					sprite.mVy=0;
+					sprite.mVx=0;
+				}else{
+					sprite.mVy=300;
+					return;
+				}
 				var index=0;
-				for(var i=0; i<anermy.bulletCount; i++){
+				for(var i=0; i<20; i++){
 					if(index>=Math.Pi*2){
 						break
 					}
-					shootBullet(anermy,prototype.bullet.small_red,Math.cos(index)*anermy.bulletSpeed,Math.sin(index)*anermy.bulletSpeed,{y:50});
+					shootBullet(anermy,prototype.bullet.small_red,Math.cos(index)*200,Math.sin(index)*200,{y:50});
 					index+=0.5;
 				}
-				anermy.bulletCount=10;
-				anermy.bulletSpeed=200;
-				sprite.mVy=300;
-				if(sprite.mDy>=0){
-					sprite.mVy=20;
-					sprite.mVx=0;
-				}
+
 
 			}
 		}

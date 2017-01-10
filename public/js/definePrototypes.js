@@ -64,7 +64,7 @@ const prototype={
 			width :96,
 			height:90,
 			sX    :0,
-			sY    :500,
+			sY    :494,
 			frame_count:7,
 			geometry:[
 			{
@@ -103,10 +103,10 @@ const prototype={
 				},
 			*/
 				{
-					mDx:7,
-					mDy:10,
+					mDx:13,
+					mDy:18,
 					mWidth:10,
-					mHeight:15
+					mHeight:10
 				},
 			/*
 				{
