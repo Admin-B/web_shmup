@@ -735,10 +735,20 @@ var anermys=new Array();
 })();
 
 
+anermys.push(
+	{
+		hp:50,
+		bullets:[],
+		sprite:new Sprite(prototype.heroes),
+		maxBulletsIndex:1000,
+	}
+);
+anermys[anermys.length-1].sprite.mWidth=0;
+anermys[anermys.length-1].sprite.mHeight=0;
 
 //각 웨이브마다 몇번쨰 anermy 배열까지가 하나의 웨이브인지 정의
 //gamelogic에서는 한 웨이브의 적이 없어지면, 다음웨이브의 적들의 y좌표를 바로 앞까지 떙겨 온다.
-const WAVE=[2,4,6,7,8,9,11,13,15,16,17];
+const WAVE=[2,4,6,7,8,9,11,13,15,16,17,anermys.length-1];
 var nowWaveIndex=0;
 
 
