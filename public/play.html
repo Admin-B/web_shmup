@@ -42,9 +42,12 @@
 			function DOM_updatePlayerStat(){
 				DOM_hp.innerHTML=player.hp;
 				if(!isNaN(nowWaveIndex)){
-					if(nowWaveIndex>=0){
+					if(nowWaveIndex>=WAVE.length-1){
 						DOM_score.classList.add("clear");
 						DOM_score.innerHTML="clear";
+						DOM_score.addEventListener("click",function(){
+							background.mAy=500;
+						});
 					}else{
 						DOM_score.innerHTML="stage " + Number(nowWaveIndex+1);
 					}
@@ -60,7 +63,7 @@
 		<script type="text/javascript" src="./js/Sprite.js"></script>
 		<script type="text/javascript" src="./js/definePrototypes.js"></script>
 		<script type="text/javascript" src="./js/defineFunctions.js"></script>
-		<script type="text/javascript" src="./play.js"></script>
+		<script type="text/javascript" src="./js/defineObjects.js"></script>
 		<script type="text/javascript" src="./js/gameLogic.js"></script>
 	</body>
 </html>
