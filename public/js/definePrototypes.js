@@ -197,6 +197,8 @@ const prototype={
 	},
 	heroes:{
 		src:"./resources/img/heroes.png",
+		width:200,
+		height:200
 	}
 };
 
