@@ -42,7 +42,7 @@
 			function DOM_updatePlayerStat(){
 				DOM_hp.innerHTML=player.hp;
 				if(!isNaN(nowWaveIndex)){
-					if(nowWaveIndex>=0){
+					if(nowWaveIndex>=WAVE.length-1){
 						DOM_score.classList.add("clear");
 						DOM_score.innerHTML="clear";
 					}else{
