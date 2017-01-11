@@ -192,7 +192,7 @@ const prototype={
 			src:"./resources/img/background1.png",
 			width:c.width,
 			dY:-2100,
-			vY:2000
+			vY:20
 		}
 	},
 	heroes:{
