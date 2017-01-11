@@ -41,7 +41,14 @@
 			//player 정보를 기반으로 dom 객체 업데이트
 			function DOM_updatePlayerStat(){
 				DOM_hp.innerHTML=player.hp;
-				DOM_score.innerHTML=player.score;
+				if(!isNaN(nowWaveIndex)){
+					if(nowWaveIndex>=0){
+						DOM_score.classList.add("clear");
+						DOM_score.innerHTML="clear";
+					}else{
+						DOM_score.innerHTML="stage " + Number(nowWaveIndex+1);
+					}
+				}
 			}
 			function DOM_damage(){
 				DOM_alert_damage.style.opacity=0.2;

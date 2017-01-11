@@ -97,7 +97,7 @@ class Sprite{
 		if(Array.isArray(imageInfo.geometry)){
 			this.geometry=imageInfo.geometry;
 		}
-
+		this.mOnUpdate=imageInfo.onupdate;
 	}
 	UpdateFrame(newTime){
 		this.currentTime-=newTime;
@@ -111,7 +111,6 @@ class Sprite{
 
 			}
 		}
-		
 		if(newTime-this.mOldUpdateTime >= this.mUpdateTime){
 			this.mOldUpdateTime=newTime;	
 			this.mDx+=this.mVx/1000*this.mUpdateTime;
@@ -119,8 +118,10 @@ class Sprite{
 
 			this.mVx+=this.mAx/1000*this.mUpdateTime;
 			this.mVy+=this.mAy/1000*this.mUpdateTime;
+			if(typeof this.mOnUpdate=="function"){
+				this.mOnUpdate();
+			}
 		}
-
 		if(this.mCount!=0 && this.mTimer){
 			if(this.mTimer.delay<=newTime-this.mTimerOldTime){
 				this.mTimerOldTime=newTime;

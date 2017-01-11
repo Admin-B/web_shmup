@@ -125,9 +125,9 @@ const prototype={
 				},
 			*/
 				{
-					mDx:13,
-					mDy:18,
-					mWidth:10,
+					mDx:12,
+					mDy:15,
+					mWidth:8,
 					mHeight:10
 				},
 			/*
@@ -192,8 +192,11 @@ const prototype={
 			src:"./resources/img/background1.png",
 			width:c.width,
 			dY:-2100,
-			vY:20
+			vY:2000
 		}
+	},
+	heroes:{
+		src:"./resources/img/heroes.png",
 	}
 };
 

@@ -99,3 +99,12 @@ body{
 	background: #aaa;
 	z-index: 1;
 }
+.clear{
+	z-index: 1000000!important;
+	opacity: 1!important;
+	background: orange!important;
+	cursor:pointer;
+}
+.clear:hover{
+	background: #DF7401!important;
+}

@@ -20,6 +20,8 @@ var player={
 		--this.hp;
 		DOM_damage();
 		if(this.hp<=0){
+		//	alert("게임오버");
+		//	location.refelsh();
 			//게임오버
 		}
 
@@ -476,9 +478,267 @@ var anermys=new Array();
 	};	
 })();
 
+
+
+/***********************************************8WAVE********************************************************/
+//anermy12
+(function(){
+	anermys.push({
+		hp:20,
+		bullets:[],
+		sprite:new Sprite(prototype.ship.saucer_skyblue),
+		maxBulletsIndex:1000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[12];
+	anermy.sprite.mDx=0;
+	anermy.sprite.mDy=-1150;
+	anermy.sprite.mVx=0;
+	anermy.sprite.mVy=20;
+	anermy.sprite.mOnUpdate=function(){
+		if(inWindow(this)){
+			this.mVy=200;
+			if(anermy.sprite.mDy>=0){
+				this.mVy=0;
+			}
+		}
+	}
+	anermy.sprite.mTimer={
+		delay:500,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				var toPlayer=toSprite(anermy.sprite,sp_player);
+				var startAngle=degree(Math.acos(toPlayer.x));
+				for(var i=startAngle-10; i<startAngle+10; i+=5){
+					shootBullet(anermy,prototype.bullet.small_red,Math.cos(radian(i))*100,Math.sin(radian(i))*100,{y:50});
+				}
+			}
+		}
+	}
+})();
+//anermy13
+(function(){
+	anermys.push({
+		hp:20,
+		bullets:[],
+		sprite:new Sprite(prototype.ship.saucer_skyblue),
+		maxBulletsIndex:1000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[13];
+	anermy.sprite.mDx=cWidth-anermy.sprite.mWidth;
+	anermy.sprite.mDy=-1150;
+	anermy.sprite.mVx=0;
+	anermy.sprite.mVy=20;
+	anermy.sprite.mOnUpdate=function(){
+		if(inWindow(this)){
+			this.mVy=200;
+			if(anermy.sprite.mDy>=0){
+				this.mVy=0;
+
+			}
+		}
+	}
+	anermy.sprite.mTimer={
+		delay:500,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				var toPlayer=toSprite(anermy.sprite,sp_player);
+				var startAngle=degree(Math.acos(toPlayer.x));
+				for(var i=startAngle-10; i<startAngle+10; i+=5){
+					shootBullet(anermy,prototype.bullet.small_red,Math.cos(radian(i))*100,Math.sin(radian(i))*100,{y:50});
+				}
+			}
+		}
+	}
+})();
+/***********************************************9WAVE********************************************************/
+//anermy14
+(function(){
+	anermys.push({
+		hp:20,
+		bullets:[],
+		sprite:new Sprite(prototype.ship.saucer_skyblue),
+		maxBulletsIndex:1000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[14];
+	anermy.sprite.mDx=cWidth-anermy.sprite.mWidth;
+	anermy.sprite.mDy=-2000;
+	anermy.sprite.mVx=0;
+	anermy.sprite.mVy=20;
+	anermy.sprite.mOnUpdate=function(){
+		if(inWindow(this)){
+			this.mVy=200;
+			if(anermy.sprite.mDy>=0){
+				this.mVy=0;
+			}
+		}
+	}
+	anermy.sprite.mTimer={
+		delay:200,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				var toPlayer=toSprite(anermy.sprite,sp_player);
+				var startAngle=degree(Math.acos(toPlayer.x));
+				for(var i=startAngle-10; i<startAngle+10; i+=5){
+					shootBullet(anermy,prototype.bullet.small_red,Math.cos(radian(i))*100,Math.sin(radian(i))*100,{y:50});
+				}
+			}
+		}
+	}
+})();
+//anermy15
+(function(){
+	anermys.push({
+		hp:20,
+		bullets:[],
+		sprite:new Sprite(prototype.ship.saucer_skyblue),
+		maxBulletsIndex:1000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[15];
+	anermy.sprite.mDx=0;
+	anermy.sprite.mDy=-2000;
+	anermy.sprite.mVx=0;
+	anermy.sprite.mVy=20;
+	anermy.sprite.mOnUpdate=function(){
+		if(inWindow(this)){
+			this.mVy=200;
+			if(anermy.sprite.mDy>=0){
+				this.mVy=0;
+			}
+		}
+	}
+	anermy.sprite.mTimer={
+		delay:200,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				var toPlayer=toSprite(anermy.sprite,sp_player);
+				var startAngle=degree(Math.acos(toPlayer.x));
+				for(var i=startAngle-10; i<startAngle+10; i+=5){
+					shootBullet(anermy,prototype.bullet.small_red,Math.cos(radian(i))*100,Math.sin(radian(i))*100,{y:50});
+				}
+			}
+		}
+	}
+})();
+/***********************************************10WAVE********************************************************/
+(function(){
+	anermys.push({
+		hp:40,
+		bullets:[],
+		sprite:new Sprite(prototype.heroes),
+		maxBulletsIndex:1000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[16];
+	anermy.sprite.mDx=cWidth/2-anermy.sprite.mWidth/2;
+	anermy.sprite.mDy=-3000;
+	anermy.sprite.mVx=0;
+	anermy.sprite.mVy=20;
+	anermy.sprite.mOnUpdate=function(){
+		if(inWindow(this)){
+			if(!this.check){
+				this.mVy=200;
+				this.mVx=-100;
+				this.check=true;
+			}
+			if(this.mDy>=0){
+				this.rC=true;
+			}
+			if(this.rC){
+				if(this.mDx<=0 || this.mDx>=cWidth-this.mWidth){
+					this.mVx*=-1;
+				}
+				if(this.mDy>=cHeight-this.mHeight || this.mDy<=0){
+					this.mVy*=-1;	
+				}				
+			}
+		}
+	}
+	anermy.sprite.mTimer={
+		delay:200,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				var toPlayer=toSprite(anermy.sprite,sp_player);
+				var startAngle=degree(Math.acos(toPlayer.x));
+				var a=degree(Math.asin(toPlayer.y));
+
+				for(var i=-30; i<30; i+=5){
+					shootBullet(anermy,prototype.bullet.small_red,Math.cos(radian(startAngle+i))*300,Math.sin(radian(a+i))*300,{y:50});
+				}
+			}
+		}
+	}
+})();
+/***********************************************10WAVE********************************************************/
+(function(){
+	anermys.push({
+		hp:50,
+		bullets:[],
+		sprite:new Sprite(prototype.heroes),
+		maxBulletsIndex:1000,
+		nohp:function(){
+			createExplosion(prototype.explosion.medium,this.sprite);
+		}
+	});
+	const anermy=anermys[17];
+	anermy.sprite.mDx=cWidth/2-anermy.sprite.mWidth/2;
+	anermy.sprite.mDy=-4000;
+	anermy.sprite.mVx=0;
+	anermy.sprite.mVy=20;
+	anermy.sprite.mOnUpdate=function(){
+		if(inWindow(this)){
+			if(!this.check){
+				this.mVy=200;
+				this.mVx=-100;
+				this.check=true;
+			}
+			if(this.mDy>=0){
+				this.rC=true;
+			}
+			if(this.rC){
+				if(this.mDx<=0 || this.mDx>=cWidth-this.mWidth){
+					this.mVx*=-1;
+				}
+				if(this.mDy>=cHeight-this.mHeight || this.mDy<=0){
+					this.mVy*=-1;	
+				}				
+			}
+		}
+	}
+	anermy.sprite.mTimer={
+		delay:200,
+		callback:function(){
+			if(inWindow(anermy.sprite)){
+				var toPlayer=toSprite(anermy.sprite,sp_player);
+				var startAngle=degree(Math.acos(toPlayer.x));
+				var a=degree(Math.asin(toPlayer.y));
+
+				for(var i=-30; i<30; i+=5){
+					shootBullet(anermy,prototype.bullet.small_red,Math.cos(radian(startAngle+i))*300,Math.sin(radian(a+i))*300,{y:50});
+				}
+			}
+		}
+	}
+})();
+
+
+
 //각 웨이브마다 몇번쨰 anermy 배열까지가 하나의 웨이브인지 정의
 //gamelogic에서는 한 웨이브의 적이 없어지면, 다음웨이브의 적들의 y좌표를 바로 앞까지 떙겨 온다.
-const WAVE=[2,4,6,7,8,9,10];
+const WAVE=[2,4,6,7,8,9,11,13,15,16,17];
 var nowWaveIndex=0;
 
 
@@ -489,3 +749,9 @@ var nowWaveIndex=0;
 var explosions=[];
 
 var background=new Sprite(prototype.background.map1);
+background.mOnUpdate=function(){
+	if(background.mDy>=0){
+		background.mVy=0;
+		background.mAy=0;
+	}
+}
