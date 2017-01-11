@@ -21,7 +21,7 @@ var player={
 		DOM_damage();
 		if(this.hp<=0){
 			alert("게임오버");
-			location.refelsh();
+			location.reload();
 			//게임오버
 		}
 
