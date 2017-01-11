@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf8">
+		<link href="./css/stylesheet.css" rel="stylesheet">
+	</head>
+	<body>
+		<section class="container">
+			<section id="cover-wrap">
+				<div id="start-btn" class="btn btn-start lock"></div>
+			</section>
+			<article id="hp"></article>
+			<article id="score"></article>
+			<article id="alert-damage"></article>
+			<canvas id="gameFrame" width=500 height=650>
+				HTML5를 지원하지 않는 브라우저입니다.
+			</canvas>
+		</section>
+		<script type="text/javascript">
+			var DOM_canvas=document.getElementById("gameFrame");
+			var c=DOM_canvas.getContext('2d');
+			const cWidth=DOM_canvas.width;
+			const cHeight=DOM_canvas.height;
+
+			const cover_wrap=document.getElementById("cover-wrap");
+			const start_btn=document.getElementById("start-btn");
+			const DOM_hp=document.getElementById("hp");
+			const DOM_score=document.getElementById("score");
+			const DOM_alert_damage=document.getElementById("alert-damage");
+
+			function unlock_start_btn(){
+				start_btn.classList.remove('lock');
+			}
+			window.addEventListener("load",function(){
+				start_btn.addEventListener("click",function(){
+					cover_wrap.style.display="none";
+					GAME();
+				});
+			});
+			//player 정보를 기반으로 dom 객체 업데이트
+			function DOM_updatePlayerStat(){
+				DOM_hp.innerHTML=player.hp;
+				if(!isNaN(nowWaveIndex)){
+					if(nowWaveIndex>=0){
+						DOM_score.classList.add("clear");
+						DOM_score.innerHTML="clear";
+					}else{
+						DOM_score.innerHTML="stage " + Number(nowWaveIndex+1);
+					}
+				}
+			}
+			function DOM_damage(){
+				DOM_alert_damage.style.opacity=0.2;
+				setTimeout(function(){
+					DOM_alert_damage.style.opacity=0.0;
+				},2500);
+			}
+		</script>
+		<script type="text/javascript" src="./js/Sprite.js"></script>
+		<script type="text/javascript" src="./js/definePrototypes.js"></script>
+		<script type="text/javascript" src="./js/defineFunctions.js"></script>
+		<script type="text/javascript" src="./play.js"></script>
+		<script type="text/javascript" src="./js/gameLogic.js"></script>
+	</body>
+</html>
