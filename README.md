@@ -1,2 +1,4 @@
 # web_shmup
-<img src="http://i.imgur.com/MVJjorq.png">
+<img src="http://i.imgur.com/MVJjorq.png"><br/>
+<a href="https://htmlpreview.github.io/?https://github.com/Admin-B/web_shmup/blob/master/public/test.html">play game</a><br/>
+<a href="https://htmlpreview.github.io/?https://github.com/Admin-B/web_shmup/blob/master/public/main.html">test game</a>
